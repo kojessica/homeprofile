@@ -263,7 +263,7 @@
 	section#listinginfo {
 		text-align: left;
 		position: fixed;
-		bottom: -75%;
+		bottom: -630px;
 		left: 0;
 		z-index: 9999;
 		background: rgba(255,255,255,0.3);
@@ -288,6 +288,7 @@
 	
 	section#listinginfo.stick {
 		position: relative;	
+		bottom: auto !important;
 	}
 	
 	section#listinginfo span.status {
@@ -1461,11 +1462,13 @@ $(window).scroll(function() {
 		}
 	}
 	
-	if (scroll > offsetheight && scroll < (offsetheight + $(window).height()*0.33) && !$('section#listinginfo').hasClass('backgroundchange')) {
+	var scrollthreshold = $('header').height() + $('section#photo').height() - $(window).height() + 150;
+	
+	if (scroll > offsetheight && scroll < scrollthreshold && !$('section#listinginfo').hasClass('backgroundchange')) {
 		$('section#listinginfo').addClass('backgroundchange');
-	} else if (scroll > (offsetheight + $(window).height()*0.33)) {
+	} else if (scroll > scrollthreshold) {
 		$('section#listinginfo').addClass('stick');
-	} else if (scroll < (offsetheight + $(window).height()*0.33)) {
+	} else if (scroll < scrollthreshold) {
 		$('section#listinginfo').removeClass('stick');
 		$('section#listinginfo').removeClass('backgroundchange');
 	}
@@ -1497,16 +1500,7 @@ $('ul#homephotolist li').click(function() {
 	        $(this).stop().animate({opacity:'1'}, 600);
 	    });
 	
-/*	$('img#mainphoto').stop().attr('src', src+'?'+Math.floor(Math.random()*(10*100))).animate({
-		opacity:'0'
-	}, 100, function() {
-		$(this).stop().animate({
-			opacity:'1'
-		}, 600);
-	}).load(function(){
-        $(this).stop().animate({opacity:'1'});
-    });;*/
-	
+
 	var sizelist = $('ul#homephotolist li').size();
 	var photoX = $(this).position().left;
 	var offsetX = photoX - sizelist;
@@ -1632,16 +1626,6 @@ function getSupportedPropertyName(properties) {
     }
     return null;
 }
-
-
-</script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-51367805-1', 'auto');
-  ga('send', 'pageview');
 </script>
 </body>
 </html>
