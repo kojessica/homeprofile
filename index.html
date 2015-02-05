@@ -1,0 +1,1637 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<style>
+	@font-face {
+	    font-family: 'Gotham';
+			font-weight: normal;
+	    src: url("halfmoon/fonts/Gotham-Book.otf") format("opentype");
+	}
+
+	@font-face {
+	    font-family: 'Gotham';
+			font-weight: 300;
+	    src: url("halfmoon/fonts/Gotham-Light.otf") format("opentype");
+	}
+
+	@font-face {
+	    font-family: 'Gotham';
+			font-weight: bold;
+	    src: url("halfmoon/fonts/Gotham-Medium.otf") format("opentype");
+	}
+	
+	@font-face {
+	    font-family: 'Whitney';
+			font-weight: 300;
+	    src: url("halfmoon/fonts/Whitney-Light-Bas.otf") format("opentype");
+	}
+
+	@font-face {
+	    font-family: 'Whitney';
+			font-weight: normal;
+	    src: url("halfmoon/fonts/Whitney-Book-Bas.otf") format("opentype");
+	}
+	
+	a, a:visited {
+		color: #2ba8de;
+		font-style: none;
+		text-decoration: none;
+	}
+	
+	::selection {
+	  background: #4cc4f3;
+	}
+	::-moz-selection {
+	  background: #4cc4f3;
+	}
+
+	body {
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		line-height: 1.8em;
+		-webkit-font-smoothing:antialiased;
+		color: #364044;
+		font-weight: 300;
+		font-size: 15px;
+		font-family: 'Whitney';
+		width: 100%;
+	}
+	
+	section, footer {
+		max-width: 800px;
+		margin: 0 auto;
+		position: relative;
+	}
+	
+	
+	header {
+		padding: 1.5em 0;
+		height: 1em;
+		line-height: 100%;
+		width: 100%;
+		margin: 0;
+	}
+	header > .logo {
+		background: url(https://dedsrg9gmr3rg.cloudfront.net/assets/front/logo-813a7be369199afd091a2735f3bbdfbe.svg) no-repeat center center;
+		width: 120px;
+		height: 12px;
+		background-size: contain;
+	    margin: 0 auto;
+		cursor: pointer;
+	}
+	
+	h1 {
+		display: block;
+		text-align: left;
+	}
+	
+	section#photo {
+		max-width: 100%;
+		background: #fff;
+		position: relative;
+		z-index:1;
+		overflow-x: hidden !important;
+	}
+	
+	section#photo ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		white-space: nowrap;
+	}
+	
+	section#photo ul li {
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		overflow: hidden;
+	}
+
+	div#mapoverlay {
+		position: absolute;
+		height: 300px;
+		z-index: 10;
+		opacity: 0;
+		width: 1991px;
+		left: -595.5px;
+		background: rgb(0, 0, 0);
+		-webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 0.3s;
+	    transition-duration: 0.3s;
+	    -webkit-transition-property: opacity;
+	    transition-property: opacity;
+		cursor: pointer;
+	}
+
+	div#mapoverlay:hover {
+		opacity: 0.3;
+		background: #4cc4f3;
+	}
+	
+	div.overlay {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: rgba(0,0,0,0.1);
+		z-index: 5;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+	    -webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 0.3s;
+	    transition-duration: 0.3s;
+	    -webkit-transition-property: opacity;
+	    transition-property: opacity;
+		display: none;
+	}
+	
+	div.wrapper:hover div.overlay {
+		opacity: 0;
+	}
+	
+	section#photo ul li img {
+		width: 167px;
+		height: 107px;
+		cursor: pointer;		
+	}
+	
+	section#listinginfo div.highlevel {
+		background: #3d4244;
+		width: 300px;
+		position: absolute;
+		top: -145px;
+		right: 0;
+		border-radius: 3px;
+		padding: 1.4em 1.2em 0em 1.2em;
+		text-align: center;
+	}
+	
+	section#photo img.main {
+		width: 100%;		
+	}
+	
+	section#photo ul img, section#photo img.main {
+	    -webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 0.6s;
+	    transition-duration: 0.6s;
+	    -webkit-transition-property: transform;
+	    transition-property: transform;
+		cursor: pointer;
+	}
+	
+	section#photo img.main {
+	    -webkit-transition-duration: 3s;
+	    transition-duration: 3s;		
+	}
+	
+	section#photo ul li:before {
+		content: "";
+	  	position: absolute;
+		z-index: -1;
+		left: 50%;
+	    right: 50%;
+		bottom: 0;
+		background: #fff;
+		height: 2px;
+		z-index:10;
+		opacity: 0;
+		-webkit-transition-property: left, right, opacity;
+		transition-property: left, right, opacity;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;		
+	}
+	
+	section#photo ul li:hover:before {
+		left: 0;
+		right: 0;
+		opacity: 0.5;
+	}
+	
+	section#photo ul li.selected:before {
+		content: "";
+	  	position: absolute;
+		z-index: -1;
+		left: 0;
+	    right: 0;
+		bottom: 0;
+		background: rgba(255,255,255,1);
+		height: 4px;
+		z-index:10;
+		opacity: 0.8;
+		-webkit-transition-property: left, right, opacity;
+		transition-property: left, right, opacity;
+		-webkit-transition-duration: 0.3s;
+		transition-duration: 0.3s;
+		-webkit-transition-timing-function: ease-out;
+		transition-timing-function: ease-out;
+	}
+	
+	section#photo ul li.selected:hover:before {
+		opacity: 1;
+	}
+	
+	section#photo ul img:hover, section#photo ul img:focus, section#photo ul img:active {
+		-webkit-transform: scale(1.04, 1.05);
+		  transform: scale(1.04, 1.05);
+	}
+	
+	section#photo img.main:hover, section#photo img.main:focus, section#photo img.main:active {
+		-webkit-transform: scale(1.01, 1.01);
+		  transform: scale(1.01, 1.01);
+	}
+	
+	section#listinginfo {
+		text-align: left;
+		position: fixed;
+		bottom: -75%;
+		left: 0;
+		z-index: 9999;
+		background: rgba(255,255,255,0.3);
+		width: 100% !important;
+		max-width: none;
+		padding-bottom: 50px;
+	    -webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 1s;
+	    transition-duration: 1s;
+	    -webkit-transition-property: background;
+	    transition-property: background;
+	}
+	
+	section#listinginfo.backgroundchange {
+		background: rgba(255,255,255,1);	
+	}
+	
+	section#listinginfo.stick {
+		position: relative;	
+	}
+	
+	section#listinginfo span.status {
+		text-transform: uppercase;
+		color: #ec7046;
+		font-weight: bold;
+		font-size: 12px;
+		letter-spacing: 2px;
+		display: block;
+		margin-top: 5em;
+	}
+	section#listinginfo span.address, h1 {
+		color: #3d4244;
+		font-weight: normal;
+		font-size: 40px;
+		letter-spacing: -3px;
+		display: block;
+		font-family: 'Gotham';
+		margin: 10px 0;
+	}
+	section#listinginfo span.city {
+		color: #364044;
+		font-weight: 300;
+		font-family: 'Gotham';
+		font-size: 18px;
+		display: inline-block;
+		margin-top: 3px;
+	}
+	
+	section#listinginfo div.remark {
+		color: #364044;
+		margin-top: 20px;
+		width: 50%;
+	}
+	
+	section#listinginfo ul {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		white-space: nowrap;
+	}
+
+	ul#homephotolist {
+		position: absolute;
+		top: 0;
+		z-index: 1000;
+	    -webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 0.5s;
+	    transition-duration: 0.5s;
+	    -webkit-transition-property: top;
+	    transition-property: top;
+	}
+	
+	ul#homephotolist.stick {
+		top: 0;
+		position: fixed;
+	}
+	
+	section#listinginfo ul li {
+		list-style-type: none;
+		display: inline-block;
+		font-weight: bold;
+		font-family: "Gotham";
+		text-align: center;
+		width: 33%;
+		padding: 0;
+		margin: 0;
+		border-left: 1px solid #5e6263;
+		white-space: nowrap;
+	}
+	
+	section#listinginfo ul li:first-child {
+		border: none;
+		width: 34%;
+	}
+	
+	section#listinginfo span.tinytext {
+		font-size: 8px;
+		text-transform: uppercase;
+		color: #ccc;
+		letter-spacing: 1px;
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	section#listinginfo span.bigtext {
+		font-size: 20px;
+		text-transform: uppercase;
+		font-weight: bold;
+		color: #fff;
+		letter-spacing: -1px;
+		display: block;
+		margin: 0;
+	}
+	
+	section#listinginfo span.bigtext span.tinytext {
+		font-size: 10px;
+		color: #fff;
+		display: inline-block;		
+	}
+	
+	div#opendoorcertified.widescreen {
+		border-radius: 2px;
+		background: #f7f7f7;
+		padding: 0em 1em 2.5em 1.5em;
+		float: right;
+		color: #66757b;
+		max-width: 300px;
+		margin-top: 4em;
+		display: block;
+	}
+	
+	div#opendoorcertified.smallscreen {
+		border-radius: 2px;
+		background: #f7f7f7;
+		padding: 0em 0em 2.5em 0em;
+		color: #66757b;
+		width: 100%;
+		display: none;
+		margin-bottom: 4em;
+	}
+	
+	div#opendoorcertified h9 {
+		font-weight: bold;
+		margin-top: 2em;
+		display: inline-block;
+		font-size: 16px;
+		margin-bottom: 5px;
+		color: #364044;
+	}
+	img.merit {
+		margin-right: 15px;
+		float: left;
+		position: relative;
+		top: 2px;
+	}
+	
+	div#opendoorcertified > p {
+		margin: 0;
+		margin-left: 45px;
+		font-size: 14px;
+	}
+	
+	div.visitthishome {
+		font-style: italic;
+		color: #eee;
+		margin: 15px auto;
+		font-size: 14px;
+	}
+	
+	div.button {
+		width: 100%;
+		padding: 0.8em 0em;
+		position: absolute;
+		bottom: -2.9em;
+		left: 0px;
+		text-align: center;
+		color: #fff;
+		font-size: 16px;
+		border-radius: 3px;
+		font-weight: bold;
+		background: #33b7eb;
+		cursor: pointer;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, .1),
+		              0 2px 2px -1px rgba(0, 0, 0, .2),
+		              0 1px 0 rgba(255, 255, 255, .1) inset;
+		-webkit-transform: translateZ(0);
+		 transform: translateZ(0);
+		 box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+		 -webkit-backface-visibility: hidden;
+	     backface-visibility: hidden;
+	     -moz-osx-font-smoothing: grayscale;
+		 overflow: hidden;
+		 -webkit-transition-duration: 0.3s;
+		 transition-duration: 0.3s;
+		 -webkit-transition-property: color, background-color, box-shadow, transform;
+		 transition-property: color, background-color, box-shadow, transform;
+	}
+	
+	div.button:hover, div.button:focus, div.button:active {
+	   background-color: #31afe0;
+	   color: white;
+		-webkit-transform: scale(1.011);
+		  transform: scale(1.011);
+	}
+	
+	div.column {
+		border-left: 1px solid #e4e1e1;
+		width: 50%;
+		text-align: left;
+		margin-left: 50%;
+	}
+	
+	div.column:first-child  {
+		border-left: 0;
+		border-right: 1px solid #e4e1e1;
+		float: left;
+		margin-left: 0;
+	}
+	
+	div.column ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	
+	div.column ul li {
+		width: 100%;
+		display: block;
+		border-bottom: 1px solid #e4e1e1;
+		position: relative;
+	}
+	div.column ul li div.box {
+		width: 100%;
+		height: 50px;
+		vertical-align: middle;
+		display: table-cell;	
+	}
+	
+	section#neighbor {
+		display: table;
+		width: 800px;
+		min-height: 600px;
+		overflow-x: hidden !important;
+		text-align: left;
+	}
+
+	section#neighbor h1 {
+		margin-bottom: 1em;
+	}
+
+	section#neighbor h3 {
+		margin-top: 50px;
+		font-size: 30px;
+		letter-spacing: -1px;
+	}
+	
+	section#neighbor ul li {
+		border-bottom: 1px solid #e4e1e1;
+		font-size: 16px;
+		padding: 20px 0;
+	}
+	
+	section#moredetails {
+		display: block
+		clear: both;
+	}
+	
+	section#moredetails span.tinytext {
+		font-size: 12px;
+		text-transform: uppercase;
+		font-weight: bold;
+		color: #6b777c;
+		letter-spacing: 1px;
+		margin: 0;
+		padding: 0;	
+		margin-left: 20px;	
+	}
+
+	section#moredetails span.bigtext {
+		font-size: 16px;
+		text-transform: none;
+		font-weight: normal;
+		position: absolute;
+		left: 60%;
+	}
+	
+	section#warranty {
+		text-align: left;
+	}
+	section#about {
+		text-align: left;
+	}
+	
+	section#about .column {
+		border: 0;
+	}
+	
+	section#warranty p {
+		width: 50%;
+	}
+	
+	h1 {
+		margin: 2em 0 1em 0;
+	}
+	
+	footer {
+		display: block;
+		text-align: left;
+		width: 800px;
+		clear: both;
+		padding-top: 2em;
+		color: white;
+		position: relative;
+		top: 5.5em;
+	}
+	
+	footer a, footer a:visited {
+		color: white;
+	}
+	
+	footer a:hover {
+		text-decoration: underline;
+	}
+	
+	footer span.companyname {
+		font-family: "Gotham";
+		font-size: 14px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		color: white;
+	}
+	
+	footer ul, ul#schools {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul#schools label {
+		width: 15%;
+		display: inline-block;
+		font-size: 12px;
+		text-transform: uppercase;
+		font-weight: bold;
+		color: #6b777c;
+		letter-spacing: 1px;
+		margin: 0;
+		padding: 0;	
+	}
+	
+	ul#schools .schoolinfo {
+		width: 15%;
+		display: inline-block;
+		margin: 0;
+		padding: 0;		
+	}
+
+	.arrowwrapper {
+		border-radius: 2px;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		background: rgba(255,255,255,0.5);
+		position: absolute;
+		z-index: 10;
+		top: 45%;
+		cursor: pointer;
+		padding: 1.3em 1.5em;
+	    -webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 0.3s;
+	    transition-duration: 0.3s;
+	    -webkit-transition-property: background;
+	    transition-property: background;
+		cursor: pointer;
+	}
+	.arrowwrapper:hover {
+		background: rgba(255,255,255,0.4);
+	}
+	.arrowwrapper.left {
+		left: 1em;		
+	}
+	
+	.arrowwrapper.right {
+		right: 1em;
+	}
+	
+	.arrows {
+		width: 9px;
+		height: 13px;
+		background: url(/halfmoon/img/arrows.png) 0 0 no-repeat;
+	}
+	
+	.arrows.left {
+		background-position: 0px 0px;
+	}
+	
+	.arrows.right {
+		background-position: -9px 0px;
+	}
+	
+	#map {
+		position: absolute;
+	}
+	
+	h3 {
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+		font-size: 30px;
+		margin-top: 50px;
+		display: block;
+		letter-spacing: -1px;
+		color: #51595c;
+	}
+	
+	p {
+		margin-bottom: 30px;
+	}
+	
+	
+	div.motionme {
+		position: absolute;
+		transform: translate3d(0px, 0px, 0px);
+
+	}
+	
+	img.cloud1 {
+		width: 120px;
+		position: absolute;
+	}
+	img.trees1 {
+		width: 40px;
+		position: relative;
+		bottom: 0px;
+		left: -2em
+	}
+	img.house {
+		width: 240px;
+		position: relative;
+	}
+	img.trees2 {
+		width: 64px;
+		position: relative;
+		bottom: 0px;
+		left: 1em;
+	}
+	img.cloud2 {
+		width: 96px;
+		position: absolute;
+	}
+	
+	section#illustration {
+		clear: both;
+		position: relative;
+		top: 7.5em;
+		max-width: 100% !important;
+		overflow: hidden;
+	}
+	
+	div.grass {
+		background: #bbccaa;
+		position: relative;
+		top: 0em;
+		left: 0px;
+		width: 100%;
+		height: 200px;
+		z-index: -1;
+	}
+	
+	div#openHouse {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: none;
+		z-index: 10000;
+		background: rgba(255,255,255,0.6);
+		height: 100%;
+		width: 100%;
+		text-align: center;
+
+	}
+	
+	div#instructions {
+		width: 600px;
+		background: #f7f8fa;
+		margin: 0 auto;
+		border-radius: 5px;
+		margin-top: 5%;
+		text-align: left;
+		border: 1px solid #f7f8fa;
+	}
+	
+	div#instructions h1 {
+		margin: 1.5em 1em 0em 1.5em;
+	}
+	
+	div#instructions h5 {
+		text-transform: uppercase;
+		display: inline-block;
+		font-size: 13px;
+		color: #33b7eb;
+		font-weight: bold;
+		margin: 0;
+		margin-right: 1em;
+		position: relative;
+		font-family: 'Gotham';
+		top: -2px;
+	}
+	
+	div#instructions ul {
+		list-style-type: none;
+		margin: 30px 0 60px 60px;
+		padding: 0;
+		font-size: 18px;
+		font-family: 'Gotham';
+	}
+	
+	div#instructions ul li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		margin-bottom: 30px;
+		vertical-align: top;
+	}
+	
+	footer .otherlinks {
+		float: right;
+		text-align: right;
+	}
+
+	@media screen and (max-width:639px) {
+		
+		footer .otherlinks {
+			float: none;
+			text-align: center;
+			margin-top: 30px;
+		}
+		
+		footer .madeby {
+			text-align: center;
+			margin-top: 30px;
+		}
+
+		div#instructions {
+			width: 360px;
+			background: #f7f8fa;
+			margin: 0 auto;
+			border-radius: 5px;
+			margin-top: 5%;
+			text-align: left;
+			border: 1px solid #f7f8fa;
+		}
+		
+		div#instructions .parag {
+			width: 200px;
+		}
+		
+		div#instructions h1 {
+			margin: 1.5em 1em 0em 30px;
+		}
+
+		div#instructions ul {
+			list-style-type: none;
+			margin: 30px 0 60px 30px;
+			padding: 0;
+			font-size: 15px;
+			font-family: 'Gotham';
+		}
+
+		img.trees1 {
+			width: 26px;
+		}
+		img.house {
+			width: 160px;
+	
+		}
+		img.trees2 {
+			width: 43px;
+		}
+
+		section#illustration {
+			clear: both;
+			left: -1.5em;
+			white-space: nowrap;
+			top: 280px;
+		}
+		
+		section#illustration img {
+			z-index: 1000;
+			position: inherit !important;
+		}
+		
+		section#illustration img.cloud1 {
+			width: 90px;
+			position: relative;
+			top: -5.5em;
+		}
+		section#illustration  img.cloud2 {
+			width: 80px;
+			position: relative;
+			top: -3.5em;
+		}
+
+		body, section {
+			overflow-x: hidden;
+		}
+		
+		section#photo ul li img {
+			width: 83.5px;
+			height: 53.5px;		
+		}
+		
+		section#listinginfo {
+			position: relative;
+			bottom: 0%;
+			width: auto !important;
+		}
+		
+		section#listinginfo > div {
+			width: auto !important;
+		}
+		
+		section#listinginfo div.highlevel {
+			position: inherit;
+			top: 0%;
+			width: 100%;
+			padding-left: 0;
+			padding-right: 0;
+			border-radius: 0;
+		}
+		
+		section, footer {
+			width: 100% !important;
+		}
+		
+		div#opendoorcertified.smallscreen {
+			display: block;
+		}
+		
+		div#opendoorcertified.widescreen {
+			display: none;
+		}
+		
+		div#opendoorcertified h9 {
+			margin-top: 1.5em;
+			margin-bottom: 0;
+		}
+		
+		div#opendoorcertified > p {
+			margin-left: 60px;
+			margin-right: 20px;
+		}
+		
+		section#listinginfo div.remark {
+			width: auto;
+			margin: 1em 1em;
+			margin-bottom: 2em;
+		}
+		
+		section#listinginfo span.city {
+			width: auto;
+			margin: 0em 0.8em;			
+		}
+		section#listinginfo span.address, h1 {
+			width: auto;
+			margin: 10px;
+			font-size: 30px;			
+		}
+		
+		h1 {
+			margin-bottom: 0.6em;
+			line-height:1em;
+			font-size: 30px;
+		}
+		
+		section#listinginfo div.highlevel {
+			padding: 1.4em 0em 0.5em 0em;
+		}
+		section#listinginfo span.status {
+			margin-left: 10px;
+			margin-top: 6em;
+		}
+		
+		div.button {
+			left: 0;
+			position: absolute;
+			bottom: -3em;
+			padding: 0.8em 0em;
+		}
+		
+		img.merit {
+			margin-left: 15px;
+		}
+		section#warranty p {
+			width: auto;
+			margin: 0 10px;
+		}
+		
+		h3 {
+			margin-left: 10px;
+			line-height: 1.2em;	
+			margin-bottom: 10px;
+			margin-top: 20px;
+			font-size: 22px;
+		}
+		
+		footer div {
+			margin: 0 10px;
+		}
+		
+		footer {
+			margin-top: 0em;
+			top: 16.5em;
+		}
+		
+		section#warranty {
+			margin-top: 2em;
+			margin-bottom: 4em;
+		}
+		
+		section#warranty img {
+			width: 100px;
+			margin-right: 10px;
+		}
+		
+		ul#schools {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		
+		section#neighbor h3 {
+			margin-bottom: 0;
+		}
+		
+		ul#schools .schoolinfo {
+			font-size: 13px;
+			line-height: 1em;
+			vertical-align: middle;
+		}
+		ul#schools label {
+			font-size: 9px;
+		}
+		section#moredetails div.column:first-child, section#about div.column:first-child {
+			float: none;
+		}
+		section#moredetails div.column, section#about div.column {
+			margin: 0;
+			height: auto;
+		}	
+		
+		section#moredetails span.tinytext {
+			font-size: 11px;
+		}	
+		section#moredetails span.bigtext {
+			font-size: 15px;
+			left: 50%;
+		}
+		section#neighbor, section#warranty  {
+			margin-top: 4em;
+		}
+		section#about {
+			margin-top: 4em;
+		}
+		section#about div.column {
+			width: 100% !important;
+		}
+		
+		section#about div.column p {
+			padding: 0 15px;
+		}
+		
+		section#about h3 {
+			padding: 0 5px;
+		}
+		
+		ul#homephotolist {
+			position: relative;
+		}
+		
+		.arrowwrapper {
+			padding: 0.5em 0.6em;
+		}
+		div.grass {
+			top: 0em;
+			height: 500px;
+		}
+	}
+	@media screen and (min-width:640px) and (max-width:959px) {
+		ul#homephotolist {
+			position: relative;
+		}
+
+		section#photo ul li img {
+			width: 111.3px;
+			height: 71.3px;
+		}
+		
+		section#listinginfo {
+			position: relative;
+			bottom: 0%;
+			width: auto !important;
+		}
+		
+		section#listinginfo > div {
+			width: auto !important;
+		}
+		
+		div#opendoorcertified.smallscreen {
+			display: none;
+		}
+		
+		div#opendoorcertified.widescreen {
+			display: block;
+		}
+		img.cloud1 {
+			width: 120px;
+			position: absolute;
+			transform: translate3d(-400px, 0px, 0px);
+			transition-duration: 0.1s;
+			-webkit-transition-duration: 0.1s;
+		}
+		img.cloud2 {
+			width: 96px;
+			position: absolute;
+			transform: translate3d(-600px, 0px, 0px);
+			transition-duration: 3s;
+			-webkit-transition-duration: 3s;
+			z-index: -1;
+		}
+
+	}
+	@media screen and (min-width:960px) and (max-width:1279px) {
+
+		div#opendoorcertified.smallscreen {
+			display: none;
+		}
+		
+		div#opendoorcertified.widescreen {
+			display: block;
+		}
+		img.cloud1 {
+			width: 120px;
+			position: absolute;
+			transform: translate3d(-400px, 0px, 0px);
+			transition-duration: 0.1s;
+			-webkit-transition-duration: 0.1s;
+		}
+		img.cloud2 {
+			width: 96px;
+			position: absolute;
+			transform: translate3d(-600px, 0px, 0px);
+			transition-duration: 3s;
+			-webkit-transition-duration: 3s;
+			z-index: -1;
+		}
+	}
+	@media screen and (min-width:1280px) {	
+		div#opendoorcertified.smallscreen {
+			display: none;
+		}
+		
+		div#opendoorcertified.widescreen {
+			display: block;
+		}
+		img.cloud1 {
+			width: 120px;
+			position: absolute;
+			transform: translate3d(-400px, 0px, 0px);
+			transition-duration: 0.1s;
+			-webkit-transition-duration: 0.1s;
+		}
+		img.cloud2 {
+			width: 96px;
+			position: absolute;
+			transform: translate3d(-600px, 0px, 0px);
+			transition-duration: 3s;
+			-webkit-transition-duration: 3s;
+			z-index: -1;
+		}
+	}
+	
+	div.close {
+		background: rgba(255,255,255,1);
+		display: inline-block;
+		padding: 20px;
+		float: right;
+		position:relative;
+		top: -1px;
+		left: 1px;
+	    -webkit-transform: translateZ(0);
+	    transform: translateZ(0);
+	    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-transition-duration: 0.3s;
+	    transition-duration: 0.3s;
+	    -webkit-transition-property: transform, background;
+	    transition-property: transform, background;
+	}
+
+	div.close:hover {
+		-webkit-transform: scale(1.3);
+		transform: scale(1.3);
+		background: rgba(255,255,255,0);
+		display: inline-block;
+		padding: 20px;
+		float: right;
+	}	
+	</style>
+</head>
+<body style="position: absolute;">
+	
+	<div id="openHouse">
+		<div id="instructions">
+			<div style="cursor: pointer;" class="close">
+				<img id="closeme" src="/halfmoon/img/close.svg" width=15px/>
+			</div>
+			<h1>To visit this home:</h1>
+			<ul>
+				<li><h5>Step 1</h5>
+					<div style="position: relative; top: 7px; display: inline-block;">Call this number: <br/>
+					<div style="vertical-align: top; font-family: 'Gotham'; font-weight: bold; padding: 10px 25px; clear: both; display: inline-block; border: 1px dashed #e4e1e1; font-size: 22px; background: #fff; border-radius: 5px; margin-top: 5px">480-719-4566</div>
+					</div>
+				<li><h5>Step 2</h5>
+					<div class="parag" style="vertical-align: top; display: inline-block;">We'll remotely unlock the house for you.</div>
+				<li><h5>Step 3</h5>
+					<div class="parag" style="vertical-align: top; display: inline-block;">
+					Enjoy the viewing at your own pace.
+					</div>
+			</ul>
+		</div>
+	</div>
+	
+	
+	<header>
+		<div class="logo"></div>
+	</header>
+	<section id="photo">
+		<ul id="homephotolist">
+			<li class="selected"><img src="/halfmoon/img/homephoto0.jpg">
+			<li><img src="/halfmoon/img/homephoto1.jpg">
+			<li><img src="/halfmoon/img/homephoto2.jpg">
+			<li><img src="/halfmoon/img/homephoto3.jpg">
+			<li><img src="/halfmoon/img/homephoto4.jpg">
+			<li><img src="/halfmoon/img/homephoto5.jpg">
+			<li><img src="/halfmoon/img/homephoto1.jpg">
+			<li><img src="/halfmoon/img/homephoto2.jpg">
+			<li><img src="/halfmoon/img/homephoto3.jpg">
+			<li><img src="/halfmoon/img/homephoto4.jpg">
+			<li><img src="/halfmoon/img/homephoto5.jpg">
+		</ul>
+		<div id="photowrapper" class="wrapper" style="max-height: 80%; width: 100%; padding:0; margin: 0; background: white; position: relative; overflow: hidden">
+			<div id="arrowleft" class="arrowwrapper left">
+				<div class="arrows left"></div>
+			</div>
+			<div id="arrowright" class="arrowwrapper right">
+				<div class="arrows right"></div>
+			</div>
+			<div class="overlay"></div>
+			<div id="mainwrapper">
+				<img class="main" style="background: url(/halfmoon/img/placeholder.gif) no-repeat" id="mainphoto"src="/halfmoon/img/homephoto.jpg" />
+			</div>
+		</div>
+	</section>
+	<section id="listinginfo">
+		<div style="width: 800px; margin: 0 auto; position: relative;">
+		<div class="highlevel">
+		  <ul>
+			<li>
+			<span class="tinytext">Priced at</span>
+			<span class="bigtext"><span class="tinytext">$</span>165<span class="tinytext">,</span>000</span>
+			<li>
+			<span class="tinytext">Bed / Bath</span>
+			<span class="bigtext">3 <span class="tinytext">/</span> 2.5</span>
+			<li>
+			<span class="tinytext">Sq ft</span>
+			<span class="bigtext">1<span class="tinytext">,</span>903</span>
+		  </ul>
+		  <div class="visitthishome">24hr Open House - Visit this home anytime!</div>
+		<div class="button" onclick="openDialogue();">
+			Visit Open House
+		</div>
+		</div>
+		
+		<div id="opendoorcertified" class="widescreen">
+			<h9><img class="merit" width="30" src="/halfmoon/img/merit.png"/> 24hr Open House</h9>
+			<p>Come on over! We'll unlock the house for you remotely so you can scope it out and take your time. No sales pitch. No agent required.</p>
+			
+			<h9><img class="merit" width="30" src="/halfmoon/img/merit.png"/> Opendoor Certified</h9>
+			<p>This home has been thoroughly inspected by an Opendoor certified inspector. The construction and renovations meet our specifications.</p>
+			
+		</div>
+		
+		<span class="status">Active listing</span>
+		<span class="address">1797 W Half Moon Circle</span>
+		<span class="city">Queen Creek, AZ 85142</span>
+		<div class="remark">
+			This home in the Morning Sun Farms community features 3 bedrooms, 2.5 baths, loft space, a formal living room and an eat-in kitchen with stainless-steel appliances. Built in 2011, the home now has brand new tile, carpet and paint, giving it a new feel.
+			<br/><br/>
+			You'll be just 10 minutes away from all the stores and restaurants in Queen Creek, which was recently named by Forbes Magazine as one of the friendliest towns in the US!
+			<br/><br/>
+			The community includes a playground, covered ramadas with barbeques, easy access to schools, and is located close to San Tan Mountain Regional Park.
+			<br/><br/>
+			As with all Opendoor homes, the renovations are of the highest quality.
+			<br/><br/>
+			You can view this home any time you like. Just come on by and give us a call at <strong>(480) 719-4566</strong>.
+		</div>
+		
+		<div id="opendoorcertified" class="smallscreen">
+			<h9><img class="merit" width="30" src="/halfmoon/img/merit.png"/> 24 Hr Open House</h9>
+			<p>Come on over! We'll unlock the house for you remotely so you can scope it out and take your time. No sales pitch. No agent required.</p>
+			
+			<h9><img class="merit" width="30" src="/halfmoon/img/merit.png"/> Opendoor Certified</h9>
+			<p>This home has been thoroughly inspected by an Opendoor certified inspector. The construction and renovations meet our specifications.</p>
+			
+		</div>
+		</div>
+	</section>
+	
+	<section id="moredetails">
+		
+		<h1>At a glance</h1>
+		
+		<div style="width: 800px; white-space: nowrap">
+			<div class="column">
+				<ul>
+					<li><div class="box"><span class="tinytext">Num of floors</span> <span class="bigtext">2</span></div>
+					<li><div class="box"><span class="tinytext">Windows</span> <span class="bigtext">Dual pane</span></div>
+					<li><div class="box"><span class="tinytext">Heating</span> <span class="bigtext">Electric</span></div>
+					<li><div class="box"><span class="tinytext">View</span> <span class="bigtext">Mountain</span></div>
+					<li><div class="box"><span class="tinytext">Home Association Fees</span> <span class="bigtext">$69</span></div>
+					<li><div class="box"><span class="tinytext">Building</span> <span class="bigtext">Wood frame</span></div>
+					<li><div class="box"><span class="tinytext">Master Closet</span> <span class="bigtext">Walk in</span></div>
+					<li><div class="box"><span class="tinytext">Interior</span> <span class="bigtext">Ceiling fan</span></div>
+					<li><div class="box"><span class="tinytext">Parking</span> <span class="bigtext">Attached 2 car</span></div>
+				</ul>
+			</div>
+			<div class="column">
+				<ul>
+					<li><div class="box"><span class="tinytext">Interior</span> <span class="bigtext">9 ft ceiling</span></div>
+					<li><div class="box"><span class="tinytext">Dwelling</span> <span class="bigtext">Detached single family</span></div>
+					<li><div class="box"><span class="tinytext">Lot size</span> <span class="bigtext">6,534 sq ft</span></div>
+					<li><div class="box"><span class="tinytext">Exposure</span> <span class="bigtext">North / South</span></div>
+					<li><div class="box"><span class="tinytext">Roof</span> <span class="bigtext">Tile</span></div>
+					<li><div class="box"><span class="tinytext">Tax Municipality</span> <span class="bigtext">Maricopa</span></div>
+					<li><div class="box"><span class="tinytext">Appliances</span> <span class="bigtext">Included</span></div>
+					<li><div class="box"><span class="tinytext">$ / Sq</span> <span class="bigtext">$74</span></div>
+					<li><div class="box"><span class="tinytext">MLS #:</span> <span class="bigtext">5231742</span></div>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="neighbor">
+		
+		<h1>Neighborhood</h1>
+		
+		<div style="overflow: hidden; height: 300px; width: 100%;">
+			<div id="mapoverlay"></div>
+		<iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13355.272629832434!2d-111.585281!3d33.19264099999998!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872a4c1d76c49e25%3A0x6494e9ee41490b31!2s1797+W+Half+Moon+Cir%2C+Queen+Creek%2C+AZ+85142!5e0!3m2!1sen!2sus!4v1422045025246" width="2000" height="300" frameborder="0" style="border:0"></iframe>
+			</div>
+		 <h3>Schools</h3>
+		<ul id="schools" style="width:100%">
+			<li style="padding-bottom: 10px; padding-top: 30px"><label style="width:52%">School Name</label>
+				<label>Type</label>
+				<label>Grades</label>
+				<label>Distance</label>
+			<li><span class="schoolinfo" style="width:52%">San Tan Heights Elementary School</span>
+				<span class="schoolinfo">Public</span>
+				<span class="schoolinfo">Preschool to 5</span>
+				<span class="schoolinfo">1.08 mi</span>
+			<li><span class="schoolinfo" style="width:52%">Mountain Vista Middle School</span>
+				<span class="schoolinfo">Public</span>
+				<span class="schoolinfo">6 to 8</span>
+				<span class="schoolinfo">1.34 mi</span>
+			<li><span class="schoolinfo" style="width:52%">San Tan Foothills High School</span>
+				<span class="schoolinfo">Public</span>
+				<span class="schoolinfo">9 to 12</span>
+				<span class="schoolinfo">3.73 mi</span>
+		</ul>
+	</section>	
+	
+	<!--<section id="warranty">
+		<img width=200 style="float: right" src="/halfmoon/img/warranty.png" />
+		<h1>Home Warranty</h1>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel leo consequat, rhoncus justo a, gravida nunc. Nullam euismod consectetur 
+		</p>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vel leo consequat, rhoncus justo a, gravida nunc. Nullam euismod consectetur 
+		</p>
+	</section>-->
+	<section id="about">
+		<h1>About Opendoor Homes</h1>
+		
+		
+		<div class="column" style="width: 45%; float: left; margin: 0">
+			<h3 style="margin-top: 20px">Who are we?</h3>
+		<p>
+			We're a team of 20 people dedicated to changing the real
+			estate business by making buying and selling dramatically
+			easier. Moving has been one of the most stressful events in
+			our lives. With a traditional home sale lasting months full of
+			headaches and uncertainty, we knew there had to be a
+			better experience for buyers and sellers.
+		</p>
+		<p>
+			For home buyers, we provide move-in ready homes
+			with top notch renovations. For home sellers, we provide
+			an offer in minutes so that you can sell the minute you're
+			ready.
+		</p>
+		</div>
+		<div class="column" style="width: 45%; float: right; margin: 0">
+		<h3 style="margin-top: 20px">We inspect every corner.</h3>
+		<p>
+			We do a 150-point inspection before buying a home
+			and then re-inspect after we're done with renovations.
+		</p>
+		<h3>Home Warranty Included.</h3>
+		<p>
+			We stand by our product, so we provide a warranty on
+			the essential items of the home free of charge.
+		</p>
+		</div>
+	</section>
+
+	<section id="illustration">
+	<img class="cloud1" id="cloud1" src="/halfmoon/img/cloud.svg" />
+	<img class="trees1" src="/halfmoon/img/trees_1.svg" />
+	<img class="house" src="/halfmoon/img/house.svg" />
+	<img class="trees2" src="/halfmoon/img/trees_2.svg" />
+	<img class="cloud2" id="cloud2" src="/halfmoon/img/cloud.svg" />
+	</section>
+	<footer>
+		<div class="otherlinks">
+			<ul>
+				<li><a href="https://www.opendoor.com/how-it-works">How Opendoor Works</a>
+				<li><a href="https://www.opendoor.com/contact-us">Contact Us</a>
+				<li><a href="https://www.opendoor.com/about-us">Who We Are</a>
+				<li><a href="https://www.opendoor.com/terms">Terms of Use / Privacy Policy</a>
+		</div>
+		<div class="madeby">
+			&copy; 2015 <span class="companyname">OPENDOOR</span><br/>
+			Built in San Francisco, CA and Phoenix, AZ.
+		</div>
+	</footer>
+	<div class="grass"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+
+var dwidth = $(window).width();
+var neighborX = $('#neighbor').offset().left;
+var photopos = 0;
+
+$(window).resize(function() {
+	if ($('#mainwrapper').height() > $(window).height()) {
+		$('ul#homephotolist').removeClass('stick').css('left', 'auto').css('top', '0px');
+	}
+});
+
+$(window).scroll(function() {
+	var scroll = $(window).scrollTop();
+	var offsetheight = $('header').height() + $('section#photo').height() - $(window).height()*1.2;
+	
+	var phototop = $('section#photo').offset().top;
+	var photoleft = $('ul#homephotolist > li').offset().left;
+	var photolistheight = $('ul#homephotolist').height();
+	
+	if ($('#mainwrapper').height() > $(window).height()) {
+		if (scroll > phototop && scroll < $('#mainwrapper').height()/3
+		+ $('header').height()) {
+			$('ul#homephotolist').addClass('stick').css('left', photoleft + 'px');
+		} else if (scroll < phototop) {
+			$('ul#homephotolist').removeClass('stick').css('left', 'auto');
+			$('ul#homephotolist').css('transition-duration', '0s').css('top', '0px');
+		} else {
+			$('ul#homephotolist').css('transition-duration', '1s').css('top', (-1)*photolistheight + 'px');
+		}
+	}
+	
+	if (scroll > offsetheight && scroll < (offsetheight + $(window).height()*0.33) && !$('section#listinginfo').hasClass('backgroundchange')) {
+		$('section#listinginfo').addClass('backgroundchange');
+	} else if (scroll > (offsetheight + $(window).height()*0.33)) {
+		$('section#listinginfo').addClass('stick');
+	} else if (scroll < (offsetheight + $(window).height()*0.33)) {
+		$('section#listinginfo').removeClass('stick');
+		$('section#listinginfo').removeClass('backgroundchange');
+	}
+
+});
+
+$('header .logo').click(function() {
+	var win = window.open("https://www.opendoor.com/", '_blank');
+	win.focus();	
+});
+
+$('#map').css('width', dwidth + 800).css('left', (-neighborX - 400) + 'px');
+$('#mapoverlay').css('width', dwidth + 800).css('left', (-neighborX - 400) + 'px');
+
+
+$('ul#homephotolist li').click(function() {
+	photopos = $(this).index();
+	
+	$('ul#homephotolist li.selected').removeClass('selected');
+	$(this).addClass('selected');
+	
+	var src = $(this).find('img').attr('src');
+	
+	$('img#mainphoto').attr('src', src+'?'+Math.floor(Math.random()*(10*100))).stop().animate({
+		opacity:'0.5'
+	}, 100, function() {
+		$(this).stop().animate({
+			opacity:'1'
+		}, 600);
+	});	
+	
+	var sizelist = $('ul#homephotolist li').size();
+	var photoX = $(this).position().left;
+	var offsetX = photoX - sizelist;
+	var listwidth = $('ul#homephotolist li').width();
+	var totalwidth = sizelist * listwidth;
+	
+	
+	if (offsetX > (totalwidth - dwidth)) {
+		$('ul#homephotolist').stop().animate({
+			'left' : '-' + (totalwidth - dwidth) + 'px'
+		}, 1000, 'easeOutCirc');		
+	} else if (offsetX > 0) {
+		offsetX -= 100;
+		$('ul#homephotolist').stop().animate({
+			'left' : '-' + offsetX + 'px'
+		}, 1000, 'easeOutCirc');
+	} else {
+		$('ul#homephotolist').stop().animate({
+			'left' : '0px'
+		}, 1000, 'easeOutCirc');
+	}
+});
+
+var scrollpos = $('body').scrollTop();
+
+function openDialogue() {
+	$('#openHouse').fadeIn(300);
+	$('#instructions').slideDown(600);
+	$('body').css('overflow', 'hidden').css('position', 'absolute');
+}
+
+$('#openHouse').click(function() {
+	$('#openHouse').fadeOut(300);
+	$('body').css('overflow', 'scroll');	
+});
+
+$('#mapoverlay').click(function() {
+	var win = window.open("https://www.google.com/maps/place/1797+W+Half+Moon+Cir,+Queen+Creek,+AZ+85142/@33.192641,-111.585281,15z/data=!4m2!3m1!1s0x872a4c1d76c49e25:0x6494e9ee41490b31?hl=en-US", '_blank');
+	 win.focus();
+});
+
+
+/* arrow left or right*/
+
+$('#arrowleft').click(function() {
+	if (photopos > 0) {
+		photopos--;
+		$('ul#homephotolist li').eq(photopos).click();
+	}
+});
+
+$('#arrowright').click(function() {
+	var maxnum = $('ul#homephotolist li').size();
+	if (photopos < (maxnum - 1)) {
+		photopos++;
+		$('ul#homephotolist li').eq(photopos).click();
+	}
+});
+
+
+/* clouds */
+
+var theCloud1 = document.getElementById('cloud1');
+var theCloud2 = document.getElementById('cloud2');
+
+var transforms = ["transform", "msTransform", "webkitTransform", "mozTransform", "oTransform"];
+var transformProperty = getSupportedPropertyName(transforms);
+
+var currentposX = -400;
+var currentposX2 = -600;
+var oscill = 1;
+var oscill2 = 1;
+
+setTimeout(kickOffTransition, 500);
+
+
+function updatePosition(e) {
+	var theThing = e.currentTarget;
+	
+	if (e.propertyName.indexOf("transform") != -1) {
+		currentposX += 5*oscill;
+		theCloud1.style[transformProperty] = "translate3d(" + currentposX + "px" + ", 0px" + ", 0)";
+		currentposX2 += 3*oscill2;
+		theCloud2.style[transformProperty] = "translate3d(" + currentposX2 + "px" + ", 0px" + ", 0)";
+		
+		if (currentposX > 600) {
+			oscill = -1;
+		} else if (currentposX < -400) {
+			oscill = 1;
+		}
+		if (currentposX2 > 400) {
+			oscill2 = -1;
+		} else if (currentposX2 < -600) {
+			oscill2 = 1;
+		}
+	}
+}
+
+function kickOffTransition() {
+	theCloud1.addEventListener("transitionend", updatePosition, false);
+	theCloud1.addEventListener("webkitTransitionEnd", updatePosition, false);
+	theCloud1.addEventListener("mozTransitionEnd", updatePosition, false);
+	theCloud1.addEventListener("msTransitionEnd", updatePosition, false);
+	theCloud1.addEventListener("oTransitionEnd", updatePosition, false);
+
+	theCloud2.addEventListener("transitionend", updatePosition, false);
+	theCloud2.addEventListener("webkitTransitionEnd", updatePosition, false);
+	theCloud2.addEventListener("mozTransitionEnd", updatePosition, false);
+	theCloud2.addEventListener("msTransitionEnd", updatePosition, false);
+	theCloud2.addEventListener("oTransitionEnd", updatePosition, false);
+
+	currentposX += 5*oscill;	
+	theCloud1.style[transformProperty] = "translate3d(" + currentposX + "px" + ", 0px" + ", 0)";
+	currentposX2 += 3*oscill2;
+	theCloud2.style[transformProperty] = "translate3d(" + currentposX2 + "px" + ", 0px" + ", 0)";
+}
+
+function getSupportedPropertyName(properties) {
+    for (var i = 0; i < properties.length; i++) {
+        if (typeof document.body.style[properties[i]] != "undefined") {
+            return properties[i];
+        }
+    }
+    return null;
+}
+
+
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-51367805-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
