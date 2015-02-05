@@ -1488,14 +1488,24 @@ $('ul#homephotolist li').click(function() {
 	$(this).addClass('selected');
 	
 	var src = $(this).find('img').attr('src');
+
+	$('img#mainphoto').stop().animate({
+			opacity:'0.2'
+		}, 100, function() {
+			$(this).attr('src', src+'?'+Math.floor(Math.random()*(10*100)));
+		}).load(function(){
+	        $(this).stop().animate({opacity:'1'}, 600);
+	    });
 	
-	$('img#mainphoto').attr('src', src+'?'+Math.floor(Math.random()*(10*100))).stop().animate({
-		opacity:'0.5'
+/*	$('img#mainphoto').stop().attr('src', src+'?'+Math.floor(Math.random()*(10*100))).animate({
+		opacity:'0'
 	}, 100, function() {
 		$(this).stop().animate({
 			opacity:'1'
 		}, 600);
-	});	
+	}).load(function(){
+        $(this).stop().animate({opacity:'1'});
+    });;*/
 	
 	var sizelist = $('ul#homephotolist li').size();
 	var photoX = $(this).position().left;
